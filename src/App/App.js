@@ -19,8 +19,8 @@ class App extends Component {
 
   componentDidMount() {
     Promise.all([
-      fetch(`${config.API_ENDPOINT}/notes`),
-      fetch(`${config.API_ENDPOINT}/folders`)
+      fetch(`${config.API_ENDPOINT}/notes`, { headers: {'Authorization': `Bearer ${config.API_TOKEN}`}}),
+      fetch(`${config.API_ENDPOINT}/folders`, { headers: {'Authorization': `Bearer ${config.API_TOKEN}`}})
     ])
       .then(([notesRes, foldersRes]) => {
         if (!notesRes.ok)
@@ -68,7 +68,7 @@ class App extends Component {
   renderNavRoutes() {
     return (
       <>
-        {['/', '/folder/:folderId'].map(path =>
+        {['/', '/folder/:folderid'].map(path =>
           <Route
             exact
             key={path}
@@ -95,7 +95,7 @@ class App extends Component {
   renderMainRoutes() {
     return (
       <>
-        {['/', '/folder/:folderId'].map(path =>
+        {['/', '/folder/:folderid'].map(path =>
           <Route
             exact
             key={path}
