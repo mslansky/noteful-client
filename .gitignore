@@ -2,6 +2,7 @@
 
 config.js
 /config
+/src/config
 # dependencies
 /node_modules
 /.pnp
